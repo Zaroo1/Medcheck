@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title> MedCheck GH | Drug Interaction Checker</title>
+  <title>MedCheck GH | Drug Interaction Checker</title>
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -11,7 +11,7 @@
   <!-- HERO SECTION -->
   <section class="hero">
     <div class="overlay">
-      <h1> Zaroo's MedCheck GH</h1>
+      <h1>MedCheck GPSA-UDS RX'31</h1>
       <p>Smart Drug–Drug Interaction Checker for Community Pharmacists</p>
       <button onclick="openTab('checker')">Get Started</button>
     </div>
@@ -31,11 +31,15 @@
       <!-- CHECKER TAB -->
       <div id="checker" class="tab active">
         <h2>Drug–Drug Interaction Checker</h2>
-        <p>Enter two drugs to check for possible interactions</p>
+        <p>Enter 2–6 drugs to check for possible interactions</p>
 
         <div class="form-box">
-          <input type="text" id="drug1" placeholder="Enter first drug">
-          <input type="text" id="drug2" placeholder="Enter second drug">
+          <input type="text" id="drug1" placeholder="Enter drug 1">
+          <input type="text" id="drug2" placeholder="Enter drug 2">
+          <input type="text" id="drug3" placeholder="Enter drug 3 (optional)">
+          <input type="text" id="drug4" placeholder="Enter drug 4 (optional)">
+          <input type="text" id="drug5" placeholder="Enter drug 5 (optional)">
+          <input type="text" id="drug6" placeholder="Enter drug 6 (optional)">
           <button onclick="checkInteraction()">Check Interaction</button>
         </div>
 
