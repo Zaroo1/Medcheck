@@ -25,7 +25,6 @@ function openTab(tabId, btn = null) {
 
 /* =========================
    DRUG INTERACTION DATABASE
-   (100 interactions – Ghana relevant)
 ========================= */
 const interactions = [
   // 🔴 MAJOR
@@ -71,35 +70,61 @@ const interactions = [
 ];
 
 /* =========================
-   INTERACTION CHECK FUNCTION
+   INTERACTION CHECK FUNCTION (2–6 DRUGS)
 ========================= */
 function checkInteraction() {
-  const d1 = document.getElementById("drug1").value.toLowerCase().trim();
-  const d2 = document.getElementById("drug2").value.toLowerCase().trim();
   const result = document.getElementById("result");
+  const drugs = [];
 
-  if (!d1 || !d2) {
-    result.innerHTML = "⚠ Please enter two drugs.";
+  // Collect entered drugs (ignore empty)
+  for (let i = 1; i <= 6; i++) {
+    const value = document.getElementById(`drug${i}`).value.toLowerCase().trim();
+    if (value) drugs.push(value);
+  }
+
+  if (drugs.length < 2) {
+    result.innerHTML = "⚠ Please enter at least two drugs.";
     result.style.background = "#ffeeba";
     return;
   }
 
-  for (let i of interactions) {
-    if (
-      (d1.includes(i[0]) && d2.includes(i[1])) ||
-      (d1.includes(i[1]) && d2.includes(i[0]))
-    ) {
-      let color =
-        i[2] === "major" ? "#f8d7da" :
-        i[2] === "moderate" ? "#fff3cd" :
-        "#d4edda";
+  const foundInteractions = [];
 
-      result.innerHTML = `<strong>${i[2].toUpperCase()} INTERACTION:</strong> ${i[3]}`;
-      result.style.background = color;
-      return;
+  // Check all pairs
+  for (let i = 0; i < drugs.length; i++) {
+    for (let j = i + 1; j < drugs.length; j++) {
+      for (let inter of interactions) {
+        if (
+          (drugs[i].includes(inter[0]) && drugs[j].includes(inter[1])) ||
+          (drugs[i].includes(inter[1]) && drugs[j].includes(inter[0]))
+        ) {
+          foundInteractions.push({
+            pair: [drugs[i], drugs[j]],
+            severity: inter[2],
+            message: inter[3]
+          });
+        }
+      }
     }
   }
 
-  result.innerHTML = "🟢 No major interaction found. Use clinical judgment.";
-  result.style.background = "#d4edda";
+  // Display results
+  if (foundInteractions.length > 0) {
+    let html = "";
+    foundInteractions.forEach(inter => {
+      let color =
+        inter.severity === "major" ? "#f8d7da" :
+        inter.severity === "moderate" ? "#fff3cd" :
+        "#d4edda";
+
+      html += `<div style="padding:12px; border-left:5px solid #003366; margin-bottom:10px; background:${color}">
+        <strong>${inter.severity.toUpperCase()} INTERACTION:</strong>
+        ${inter.pair.join(" + ")} → ${inter.message}
+      </div>`;
+    });
+    result.innerHTML = html;
+  } else {
+    result.innerHTML = "🟢 No major interaction found. Use clinical judgment.";
+    result.style.background = "#d4edda";
+  }
 }
