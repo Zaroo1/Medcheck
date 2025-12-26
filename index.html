@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MedCheck GH | Drug Interaction Checker</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="overlay">
+      <h1>MedCheck GH</h1>
+      <p>Smart Drug–Drug Interaction Checker for Community Pharmacists</p>
+      <button onclick="openTab('checker')">Get Started</button>
+    </div>
+  </section>
+
+  <!-- TABS -->
+  <section class="tabs">
+    <div class="tab-buttons">
+      <button class="tab-btn active" onclick="openTab('checker')">Interaction Checker</button>
+      <button class="tab-btn" onclick="openTab('about')">About Project</button>
+      <button class="tab-btn" onclick="openTab('team')">Team</button>
+    </div>
+
+    <!-- TAB CONTENT -->
+    <div class="tab-content">
+
+      <!-- CHECKER TAB -->
+      <div id="checker" class="tab active">
+        <h2>Drug–Drug Interaction Checker</h2>
+        <p>Enter two drugs to check for possible interactions</p>
+
+        <div class="form-box">
+          <input type="text" id="drug1" placeholder="Enter first drug">
+          <input type="text" id="drug2" placeholder="Enter second drug">
+          <button onclick="checkInteraction()">Check Interaction</button>
+        </div>
+
+        <div id="result" class="result"></div>
+      </div>
+
+      <!-- ABOUT TAB -->
+      <div id="about" class="tab">
+        <h2>About MedCheck GH</h2>
+        <p>
+          MedCheck GH is a pharmacy-focused decision support tool developed to
+          improve safe dispensing and pharmaceutical care in Ghanaian community pharmacies.
+        </p>
+        <ul>
+          <li>✔ Improves patient safety</li>
+          <li>✔ Supports clinical decision-making</li>
+          <li>✔ Designed for low-resource settings</li>
+          <li>✔ Offline-capable</li>
+        </ul>
+      </div>
+
+      <!-- TEAM TAB -->
+      <div id="team" class="tab">
+        <h2>Project Team (Rx31)</h2>
+        <p>This project was developed by a 5-member pharmacy student team.</p>
+        <ol>
+          <li>Project Lead / Clinical Review</li>
+          <li>Research & Interaction Database</li>
+          <li>Software & UI Design</li>
+          <li>Quality Assurance</li>
+          <li>Documentation & Presentation</li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 MedCheck GH | GPSA – UDS</p>
+  </footer>
+
+<script src="script.js"></script>
+</body>
+</html>
